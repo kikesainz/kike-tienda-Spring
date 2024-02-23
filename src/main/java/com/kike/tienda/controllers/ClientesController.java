@@ -33,7 +33,7 @@ public class ClientesController {
 		
 		List<ComboDTO> listaPoblaciones = combosDAO.recuperarListaPoblacion();
 		model.addAttribute("combosPoblacion", listaPoblaciones);
-		return "listadoClientes";
+		return "clientes/listadoClientes";
 	}
 
 	@PostMapping("/clientes/listarclientes")
@@ -49,7 +49,7 @@ public class ClientesController {
 		List<ClientesDTO> listaClientes = clientesServicio.buscarClientes(idCliente, nombre, correoElectronico,
 				idPoblacion, activo);
 		model.addAttribute("listaClientes", listaClientes);
-		return "listadoClientes";
+		return "clientes/listadoClientes";
 	}
 
 	@GetMapping("/clientes/insertarclientes")
@@ -58,7 +58,7 @@ public class ClientesController {
 
 		List<ComboDTO> listaPoblaciones = combosDAO.recuperarListaPoblacion();
 		model.addAttribute("combosPoblacion", listaPoblaciones);
-		return "insertarClientes";
+		return "clientes/insertarClientes";
 	}
 
 	@PostMapping("/clientes/insertarclientes")
@@ -71,7 +71,7 @@ public class ClientesController {
 		model.addAttribute("resultado", resultado);
 		List<ComboDTO> listaPoblaciones = combosDAO.recuperarListaPoblacion();
 		model.addAttribute("combosPoblacion", listaPoblaciones);
-		return "insertarClientes";
+		return "clientes/insertarClientes";
 	}
 
 	@GetMapping("/clientes/formularioactualizarclientes")
@@ -79,7 +79,7 @@ public class ClientesController {
 			throws ClassNotFoundException, SQLException, NamingException {
 		List<ComboDTO> listaPoblaciones = combosDAO.recuperarListaPoblacion();
 		model.addAttribute("combosPoblacion", listaPoblaciones);
-		return "actualizarClientes";
+		return "clientes/actualizarClientes";
 	}
 
 	@PostMapping("/clientes/formularioactualizarclientes")
@@ -94,7 +94,7 @@ public class ClientesController {
 		List<ComboDTO> listaPoblaciones = combosDAO.recuperarListaPoblacion();
 		model.addAttribute("combosPoblacion", listaPoblaciones);
 		
-		return "actualizarClientes";
+		return "clientes/actualizarClientes";
 	}
 	@PostMapping("/clientes/actualizarclientes")
 	public String actualizarCliente(@RequestParam("idClientes") String idCliente, @RequestParam("nombre") String nombre,
@@ -109,7 +109,7 @@ public class ClientesController {
 		
 		List<ComboDTO> listaPoblaciones = combosDAO.recuperarListaPoblacion();
 		model.addAttribute("combosPoblacion", listaPoblaciones);
-		return "actualizarClientes";
+		return "clientes/actualizarClientes";
 	}
 	
 	@GetMapping("/clientes/formularioborrarclientes")
@@ -130,7 +130,7 @@ public class ClientesController {
 		List<ClientesDTO> listaClientes = clientesServicio.buscarClientes(idCliente, nombre, correoElectronico, idPoblacion, activo);
 		model.addAttribute("listaClientes", listaClientes);
 		
-		return "borrarClientes";
+		return "clientes/borrarClientes";
 	}
 	@PostMapping("/clientes/borrarclientes")
 	public String borrarCliente(@RequestParam("idClientes") String idCliente, @RequestParam("nombre") String nombre,
@@ -144,7 +144,7 @@ public class ClientesController {
 		List<ComboDTO> listaPoblaciones = combosDAO.recuperarListaPoblacion();
 		model.addAttribute("combosPoblacion", listaPoblaciones);
 		
-		return "borrarClientes";
+		return "clientes/borrarClientes";
 	}
 	
 }

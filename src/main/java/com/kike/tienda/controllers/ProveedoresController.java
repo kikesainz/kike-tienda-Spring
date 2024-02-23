@@ -42,12 +42,12 @@ public class ProveedoresController {
 		List<ProveedoresDTO> listaProveedores = proveedoresServicio.buscarProveedor(idProveedor, nombre, contacto, telefono, correoElectronico, direccion, activo);
 		model.addAttribute("listaProveedores", listaProveedores);
 		
-		return "listadoProveedores";
+		return "proveedores/listadoProveedores";
 	}
 	@GetMapping("/proveedores/insertarproveedores")
 	public String getFormularioInsertarProveedores(ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
 		
-		return "insertarProveedores";
+		return "proveedores/insertarProveedores";
 	}
 	@PostMapping("/proveedores/insertarproveedores")
 	public String insertarProveedor(@RequestParam("idProveedor") String idProveedor,
@@ -62,11 +62,11 @@ public class ProveedoresController {
 		activo = (activo != null) ? "1" : "0";
 		Integer resultado = proveedoresServicio.insertarProveedor(idProveedor, nombre, contacto, telefono, correoElectronico, direccion, activo);
 		model.addAttribute("resultado", resultado);
-		return "insertarProveedores";
+		return "proveedores/insertarProveedores";
 	}
 	@GetMapping("/proveedores/formularioactualizarproveedores")
 	public String getFormularioActualizarCategorias() {
-		return "actualizarProveedores";
+		return "proveedores/actualizarProveedores";
 	}
 	@PostMapping("/proveedores/formularioactualizarproveedores")
 	public String actualizarProveedor(@RequestParam("idProveedor") String idProveedor,
@@ -81,7 +81,7 @@ public class ProveedoresController {
 		List<ProveedoresDTO> listaProveedores = proveedoresServicio.buscarProveedor(idProveedor, nombre, contacto, telefono, correoElectronico, direccion, activo);
 		model.addAttribute("listaProveedores", listaProveedores);
 		
-		return "actualizarProveedores";
+		return "proveedores/actualizarProveedores";
 	}
 	@PostMapping("/proveedores/actualizarproveedores")
 	public String actualizarProveedores(@RequestParam("idProveedor") String idProveedor,
@@ -96,6 +96,6 @@ public class ProveedoresController {
 		activo = (activo != null) ? "1" : "0";
 		Integer resultado = proveedoresServicio.actualizarProvedor(idProveedor, nombre, contacto, telefono, correoElectronico, direccion, activo);
 		model.addAttribute("resultado", resultado);
-		return "actualizarProveedores";
+		return "proveedores/actualizarProveedores";
 	}
 }

@@ -13,7 +13,7 @@
 <header>
 	<h2>Panel de Control Tienda de Productos Informáticos</h2>
 	</header>
-	<%@include file="/menu.html"%>
+	<%@include file="../menu.html"%>
 
 		<h3>Listado Categorías</h3>
 	<div class="container">

@@ -40,7 +40,7 @@ public class PedidosController {
 		model.addAttribute("combosClientes", listaClientes);
 		List<ComboDTO> listaProductos = combosDAO.recuperarListaProductos();
 		model.addAttribute("combosProductos", listaProductos);
-		return "insertarPedidos";
+		return "pedidos/insertarPedidos";
 	}
 
 	@PostMapping("/calculaprecio")
@@ -67,7 +67,7 @@ public class PedidosController {
 		List<ComboDTO> listaEstados = combosDAO.recuperarListaEstados();
 		model.addAttribute("combosEstados", listaEstados);
 
-		return "listadoPedidos";
+		return "pedidos/listadoPedidos";
 	}
 
 	@PostMapping("/listarpedidos")
@@ -92,7 +92,7 @@ public class PedidosController {
 
 		List<PedidosDTO> listaPedidos = pedidosServicio.buscarPedidos(idPedido, idCliente, fechaPedido, idEstado);
 		model.addAttribute("listaPedidos", listaPedidos);
-		return "listadoPedidos";
+		return "pedidos/listadoPedidos";
 	}
 
 	@GetMapping("/formularioactualizarpedidos")
@@ -104,7 +104,7 @@ public class PedidosController {
 		List<ComboDTO> listaEstados = combosDAO.recuperarListaEstados();
 		model.addAttribute("combosEstados", listaEstados);
 
-		return "actualizarPedidos";
+		return "pedidos/actualizarPedidos";
 	}
 
 	@PostMapping("/formularioactualizarpedidos")
@@ -133,7 +133,7 @@ public class PedidosController {
 		model.addAttribute("combosEstados", listaEstados);
 		List<ComboDTO> listaProductos = combosDAO.recuperarListaProductos();
 		model.addAttribute("combosProductos", listaProductos);
-		return "actualizarPedidos";
+		return "pedidos/actualizarPedidos";
 	}
 
 	@PostMapping("/actualizarpedidos")
@@ -151,7 +151,7 @@ public class PedidosController {
 
 		Integer resultado = pedidosServicio.actualizarPedidos(idCliente, idPedido, idProducto, cantidad, precio,
 				idDetallePedido);
-		return "actualizarPedidos";
+		return "pedidos/actualizarPedidos";
 	}
 
 }

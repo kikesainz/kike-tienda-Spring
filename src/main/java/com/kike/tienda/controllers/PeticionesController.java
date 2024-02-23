@@ -36,7 +36,7 @@ public class PeticionesController {
 		model.addAttribute("combosProductos", listaProductos);
 		List<ComboDTO> listaEstados = combosDAO.recuperarListaEstados();
 		model.addAttribute("combosEstados", listaEstados);
-		return "listadoPeticiones";
+		return "peticiones/listadoPeticiones";
 	}
 	@PostMapping("/peticiones/listarpeticiones")
 	public String buscarPeticiones(@RequestParam("idPeticion") String idPeticion,
@@ -66,7 +66,7 @@ public class PeticionesController {
 		
 		List<PeticionesDTO> listaPeticiones = peticionesServicio.buscarPeticiones(idPeticion, idCliente, idProducto, cantidad, idEstado, fechaPedido);
 		model.addAttribute("listaPeticiones", listaPeticiones);
-		return "listadoPeticiones";
+		return "peticiones/listadoPeticiones";
 	}
 	@GetMapping("/peticiones/insertarpeticiones")
 	public String getFormularioInsertarPeticiones(ModelMap model) throws ClassNotFoundException, SQLException, NamingException {
@@ -78,7 +78,7 @@ public class PeticionesController {
 		List<ComboDTO> listaEstados = combosDAO.recuperarListaEstados();
 		model.addAttribute("combosEstados", listaEstados);
 		
-		return "insertarPeticiones";
+		return "peticiones/insertarPeticiones";
 	}
 	@PostMapping("/peticiones/insertarpeticiones")
 	public String insertarPeticiones(@RequestParam("idCliente") String idCliente,
@@ -98,7 +98,7 @@ public class PeticionesController {
 		
 		Integer resultado = peticionesServicio.insertarPeticiones(idCliente, idProducto, cantidad, idEstado);
 		model.addAttribute("resultado", resultado);
-		return "insertarPeticiones";
+		return "peticiones/insertarPeticiones";
 	}
 	
 	@GetMapping("/peticiones/formularioactualizarpeticiones")
@@ -110,7 +110,7 @@ public class PeticionesController {
 		model.addAttribute("combosProductos", listaProductos);
 		List<ComboDTO> listaEstados = combosDAO.recuperarListaEstados();
 		model.addAttribute("combosEstados", listaEstados);
-		return "actualizarPeticiones";
+		return "peticiones/actualizarPeticiones";
 	}
 	
 	@PostMapping("/peticiones/formularioactualizarpeticiones")
@@ -139,7 +139,7 @@ public class PeticionesController {
 		
 		List<PeticionesDTO> listaPeticiones = peticionesServicio.buscarPeticionesParaModificar(idPeticion, idCliente, idProducto, cantidad, idEstado, fechaPedido);
 		model.addAttribute("listaPeticiones", listaPeticiones);
-		return "actualizarPeticiones";
+		return "peticiones/actualizarPeticiones";
 	}
 	
 	@PostMapping("/peticiones/actualizarpeticiones")
@@ -170,7 +170,7 @@ public class PeticionesController {
 		Integer resultado = peticionesServicio.modificarPeticiones(idPeticion, idCliente, idProducto, cantidad, idEstado, fechaPedido);
 		model.addAttribute("resultado", resultado);
 		
-		return "actualizarPeticiones";
+		return "peticiones/actualizarPeticiones";
 	}
 	@GetMapping("/peticiones/formularioborrarpeticiones")
 	public String formularioBorrarPeticiones(ModelMap model) throws ClassNotFoundException, SQLException, NamingException{
@@ -182,7 +182,7 @@ public class PeticionesController {
 		List<ComboDTO> listaEstados = combosDAO.recuperarListaEstados();
 		model.addAttribute("combosEstados", listaEstados);
 		
-		return "borrarPeticiones";
+		return "peticiones/borrarPeticiones";
 	}
 	
 	@PostMapping("/peticiones/formularioborrarpeticiones")
@@ -214,7 +214,7 @@ public class PeticionesController {
 		List<PeticionesDTO> listaPeticiones = peticionesServicio.buscarPeticionesParaModificar(idPeticion, idCliente, idProducto, cantidad, idEstado, fechaPedido);
 		model.addAttribute("listaPeticiones", listaPeticiones);
 		
-		return "borrarPeticiones";
+		return "peticiones/borrarPeticiones";
 	}
 	@PostMapping("/peticiones/borrarpeticiones")
 	public String borrarPeticiones(@RequestParam("idPeticion") String idPeticion,
@@ -244,6 +244,6 @@ public class PeticionesController {
 		Integer resultado = peticionesServicio.borrarPeticiones(idPeticion);
 		model.addAttribute("resultado", resultado);
 		
-		return "borrarPeticiones";
+		return "peticiones/borrarPeticiones";
 	}
 }

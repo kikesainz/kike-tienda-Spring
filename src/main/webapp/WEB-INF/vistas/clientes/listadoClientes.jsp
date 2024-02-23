@@ -14,45 +14,45 @@
 	<header>
 		<h2>Panel de Control Tienda de Productos Informáticos</h2>
 	</header>
-	<%@include file="/menu.html"%>
+	<%@include file="../menu.html"%>
 
-		<h3>Listado Proveedores</h3>
+		<h3>Listado Clientes</h3>
 	<div class="container">
 		<div class="form">
-			<form action="http://localhost:8080/tienda/proveedores/listarproveedores" id="formulario"
+			<form action="http://localhost:8080/tienda/clientes/listarclientes" id="formulario"
 				method="POST">
-				<label>ID Proveedor:</label> <input type="text" id="idProveedor" name="idProveedor"><br>
+				<label>ID Cliente:</label> <input type="text" id="idClientes" name="idClientes"><br>
 				<label>Nombre:</label> <input type="text" id="nombre" name="nombre"><br>
-				<label>Contacto:</label> <input type="text" id="contacto" name="contacto"><br>
-				<label>Teléfono:</label> <input type="text" id="telefono" name="telefono"><br>
 				<label>Correo Electrónico:</label> <input type="text" id="correoElectronico" name="correoElectronico"><br>
-				<label>Dirección:</label> <input type="text" id="direccion" name="direccion"><br>
+				<label for="poblacion">Población:</label><br>
+				<select name="idPoblacion" id="idPoblacion" form="formulario">
+					<option value="">Seleccione una opción</option>
+					<c:forEach items="${combosPoblacion}" var="poblacion">
+						<option value="${poblacion.id}">${poblacion.nombre}</option>
+					</c:forEach>
+				</select><br>
 				<label for="activo">Activo</label>
 				<input type="checkbox" id="activo" name="activo"><br>
 				<input type="submit" value="Buscar">
 			</form>
 
 		</div>
-		<c:if test="${not empty listaProveedores}">
+		<c:if test="${not empty listaClientes}">
 			<table>
 				<tr>
 					<th>ID</th>
 					<th>NOMBRE</th>
-					<th>CONTACTO</th>
-					<th>TELÉFONO</th>
 					<th>CORREO ELECTRÓNICO</th>
-					<th>DIRECCIÓN</th>
+					<th>POBLACIÓN</th>
 					<th>ACTIVO</th>
 				</tr>
-				<c:forEach items="${listaProveedores}" var="proveedores">
+				<c:forEach items="${listaClientes}" var="clientes">
 					<tr>
-						<td>${proveedores.idProveedor}</td>
-						<td>${proveedores.nombre}</td>
-						<td>${proveedores.contacto}</td>
-						<td>${proveedores.telefono}</td>
-						<td>${proveedores.correoElectronico}</td>
-						<td>${proveedores.direccion}</td>
-						<td>${proveedores.activo}</td>
+						<td>${clientes.idClientes}</td>
+						<td>${clientes.nombre}</td>
+						<td>${clientes.correoElectronico}</td>
+						<td>${clientes.nombreMunicipio}</td>
+						<td>${clientes.activo}</td>
 					</tr>
 				</c:forEach>
 			</table>

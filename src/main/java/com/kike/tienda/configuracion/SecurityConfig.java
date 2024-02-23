@@ -21,12 +21,11 @@ public class SecurityConfig {
     	http
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                    .requestMatchers("/css/**", "/favicon.ico", "/", "/index").permitAll()
+                    .requestMatchers("/css/**", "/resources/**", "/", "/index").permitAll()
                     .requestMatchers("/obtenercategorias").permitAll()
                     .requestMatchers("/insertarcategorias").permitAll()
                     .requestMatchers("/formularioactualizarcategorias").hasAnyRole("ENCARGADO")
-                    .requestMatchers("/pedidos/*").hasAnyRole("ADMIN","ENCARGADO")
-          
+                    .requestMatchers("/pedidos/listarpedidos").hasAnyRole("ADMIN","ENCARGADO")          
                     .anyRequest().authenticated()
             )
             .formLogin(formLogin ->
@@ -36,11 +35,12 @@ public class SecurityConfig {
                     .permitAll()
             )
             .logout(logout ->
-                logout.logoutUrl("/logout").permitAll()
+                logout.logoutUrl("/logout").logoutSuccessUrl("/login?logout=true").deleteCookies("JSESSIONID")
             )
             .requestCache((cache) -> cache
                     .requestCache(requestCache)
-                    );;
+                    
+            );
 
         return http.build();
     }

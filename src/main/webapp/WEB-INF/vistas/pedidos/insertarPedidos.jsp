@@ -16,7 +16,7 @@
 	<header>
 		<h2>Panel de Control Tienda de Productos Informáticos</h2>
 	</header>
-	<%@include file="/menu.html"%>
+	<%@include file="../menu.html"%>
 	<h1 class="carrito">Carrito de Compras</h1>
 	<div class="container">
 		<div class="form">

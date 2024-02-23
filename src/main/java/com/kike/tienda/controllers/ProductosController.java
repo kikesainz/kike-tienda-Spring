@@ -33,7 +33,7 @@ public class ProductosController {
 		List<ComboDTO> listaProveedores = combosDAO.recuperarListaProveedores();
 		model.addAttribute("combosCategorias", listaCategorias);
 		model.addAttribute("combosProveedores", listaProveedores);
-		return "listadoProductos";
+		return "productos/listadoProductos";
 	}
 
 	@PostMapping("/listarproductos")
@@ -56,7 +56,7 @@ public class ProductosController {
 
 		List<ProductosDTO> listaProductos = productosServicio.buscarProducto(id, nombre, descripcion, precioDouble, cantidad, idCategroria, idProveedor);
 		model.addAttribute("listaProductos", listaProductos);
-		return "listadoProductos";
+		return "productos/listadoProductos";
 	}
 	
 	@GetMapping("/insertarproductos")
@@ -67,7 +67,7 @@ public class ProductosController {
 		model.addAttribute("combosCategorias", listaCategorias);
 		model.addAttribute("combosProveedores", listaProveedores);
 		
-		return "insertarProductos";
+		return "productos/insertarProductos";
 	}
 	
 	@PostMapping("/insertarproductos")
@@ -100,7 +100,7 @@ public class ProductosController {
 		
 
 				
-		return "insertarProductos";
+		return "productos/insertarProductos";
 	}
 	
 	@GetMapping("/formularioactualizarproductos")
@@ -110,7 +110,7 @@ public class ProductosController {
 		
 		model.addAttribute("combosCategorias", listaCategorias);
 		model.addAttribute("combosProveedores", listaProveedores);
-		return "actualizarProductos";
+		return "productos/actualizarProductos";
 	}
 	@PostMapping("/formularioactualizarproductos")
 	public String actualizarProductos(@RequestParam("idProducto") String id, 
@@ -142,7 +142,7 @@ public class ProductosController {
 		model.addAttribute("combosProveedores", listaProveedores);
 		
 		
-		return "actualizarProductos";
+		return "productos/actualizarProductos";
 	}
 	@PostMapping("/actualizarproductos")
 	public String actualizarProducto(@RequestParam("idProducto") String id, 
@@ -171,6 +171,6 @@ public class ProductosController {
 		List<ComboDTO> listaProveedores = combosDAO.recuperarListaProveedores();
 		model.addAttribute("combosCategorias", listaCategorias);
 		model.addAttribute("combosProveedores", listaProveedores);
-		return "actualizarProductos";
+		return "productos/actualizarProductos";
 	}
 }

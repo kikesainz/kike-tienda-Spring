@@ -4,25 +4,27 @@
 
 
 <%@ page isELIgnored="false"%>
+<!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <link rel="stylesheet" href="/tienda/css/index.css">
 <link rel="stylesheet" href="/tienda/css/formularios.css">
 <link rel="stylesheet" href="/tienda/css/tablas.css">
+<title>Insertar Categorias</title>
 </head>
 <body>
 	<header>
 		<h2>Panel de Control Tienda de Productos Informáticos</h2>
 	</header>
-	<%@include file="/menu.html"%>
+	<%@include file="../menu.html"%>
 
-		<h3>Listado Peticiones</h3>
+	<h3>Insertar Peticiones</h3>
 	<div class="container">
 		<div class="form">
-			<form action="http://localhost:8080/tienda/peticiones/listarpeticiones" id="formulario"
-				method="POST">
-				<label>ID Petición:</label><br> <input type="text" id="idPeticion" name="idPeticion"><br>
-				<br><label>Nombre Cliente:</label><br>
+			<form action="http://localhost:8080/tienda/peticiones/insertarpeticiones"
+				id="formulario" method="POST">
+				<label>Nombre Cliente:</label><br>
 				<select name="idCliente" id="idCliente" form="formulario">
 					<option value="">Seleccione una opción</option>
 					<c:forEach items="${combosClientes}" var="cliente">
@@ -47,36 +49,13 @@
 						<option value="${estado.id}">${estado.nombre}</option>
 					</c:forEach>
 				</select><br>
-				
-				<br><label>Fecha Pedido:</label><br> <input type="date" id="fechaPedido" name="fechaPedido"><br>
-
-				<input type="submit" value="Buscar">
+				<input type="submit" value="Insertar">
 			</form>
 
 		</div>
-		<c:if test="${not empty listaPeticiones}">
-		<h3>Resultado de la Búsqueda</h3>
-			<table>
-				<tr>
-					<th>ID Petición</th>
-					<th>Cliente</th>
-					<th>Producto</th>
-					<th>Fecha Petición</th>
-				</tr>
-				<c:forEach items="${listaPeticiones}" var="peticiones">
-					<tr>
-						<td>${peticiones.idPeticion}</td>
-						<td>${peticiones.nombreCliente}</td>
-						<td>${peticiones.nombreProducto}</td>
-						<td>${peticiones.fechaPedido}</td>
-					</tr>
-				</c:forEach>
-			</table>
+		<c:if test="${resultado == 1}">
+			<p>Petición insertada correctamente</p>
 		</c:if>
 	</div>
-
-
-
-
 </body>
 </html>
