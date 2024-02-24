@@ -8,6 +8,6 @@ import com.kike.tienda.entities.User;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUsername(String username);
+public interface UserRepository extends JpaRepository<User, Integer> {
+    Optional<User> findByName(String name);
 }
