@@ -35,6 +35,7 @@ public class ConfiguracionSeguridad {
                     .requestMatchers("/pedidos/listarpedidos").hasAnyAuthority("ADMIN","ENCARGADO")    
                     .requestMatchers("/peticiones/listarpeticiones").hasAnyAuthority("ADMIN","ENCARGADO") 
                     .anyRequest().authenticated()
+                    
             )
             .formLogin(formLogin ->
                 formLogin
@@ -49,7 +50,9 @@ public class ConfiguracionSeguridad {
                     .requestCache(requestCache)
                     
             )
-    		.authenticationProvider(authenticationProvider()); //Utilizamos el authenticationProvider que definimos más abajo.
+    		.authenticationProvider(authenticationProvider());//Utilizamos el authenticationProvider que definimos más abajo.
+//    		.csrf(csrf ->csrf.disable()); //Deshabilitar el CORS. OJO PORQUE ESTO LO TENDRÉIS QUE HACER CUANDO HAGÁIS PETICIONES DESDE OTRA APLICACIÓN (Vue O Angular)
+//    		.exceptionHandling((exceptionHandling) -> exceptionHandling.accessDeniedPage("/accesoDenegado")); //Si quisiéramos redirigir a una página "bonita" para informar que el usuario no tiene permisos
 
         return http.build();
     }
