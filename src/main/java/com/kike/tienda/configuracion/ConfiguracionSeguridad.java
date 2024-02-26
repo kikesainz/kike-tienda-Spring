@@ -1,4 +1,6 @@
 package com.kike.tienda.configuracion;
+import java.util.Collections;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -6,11 +8,13 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.web.cors.CorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity (debug=true)
@@ -50,8 +54,10 @@ public class ConfiguracionSeguridad {
                     .requestCache(requestCache)
                     
             )
-    		.authenticationProvider(authenticationProvider());//Utilizamos el authenticationProvider que definimos más abajo.
-//    		.csrf(csrf ->csrf.disable()); //Deshabilitar el CORS. OJO PORQUE ESTO LO TENDRÉIS QUE HACER CUANDO HAGÁIS PETICIONES DESDE OTRA APLICACIÓN (Vue O Angular)
+    		.authenticationProvider(authenticationProvider()) //Utilizamos el authenticationProvider que definimos más abajo.
+    		.cors(corsConfigurer -> corsConfigurer.configurationSource(corsConfiguration()))
+            .csrf(AbstractHttpConfigurer::disable);
+//    		.csrf(csrf ->csrf.disable()); //Deshabilitar el CORS.
 //    		.exceptionHandling((exceptionHandling) -> exceptionHandling.accessDeniedPage("/accesoDenegado")); //Si quisiéramos redirigir a una página "bonita" para informar que el usuario no tiene permisos
 
         return http.build();
@@ -69,4 +75,17 @@ public class ConfiguracionSeguridad {
 		authenticationProvider.setPasswordEncoder(passwordEncoder());
 		return authenticationProvider;
 	}
+	
+	  @Bean
+	  public CorsConfigurationSource corsConfiguration() {
+	    return request -> {
+	      org.springframework.web.cors.CorsConfiguration config = 
+	          new org.springframework.web.cors.CorsConfiguration();
+	      config.setAllowedHeaders(Collections.singletonList("*"));
+	      config.setAllowedMethods(Collections.singletonList("*"));
+	      config.setAllowedOriginPatterns(Collections.singletonList("*"));
+	      config.setAllowCredentials(true);
+	      return config;
+	    };
+	  }
 }
